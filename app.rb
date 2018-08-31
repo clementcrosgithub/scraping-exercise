@@ -14,24 +14,20 @@ html_doc.search('.event_link').each do |event_link|
   info = {}
 
   venue_details = next_html_doc.search('.venue-details')
-  info[:city]  = venue_details.search('h2').text.split(":")[0]
+  info[:city]   = venue_details.search('h2').text.split(":")[0]
   info[:date]   = venue_details.search('h4').text
 
   event_information = next_html_doc.search('.event-information')
   info[:venue]      = event_information.search('h1').text
 
   booking_fee = next_html_doc.search('.searchResultsPrice')
-  # info[:price]  = venue_details.search('').text
+  
   p info
   filepath = 'events.json'
   File.open(filepath, 'a') do |file|
   file.write(JSON.generate(info))
 end
 
-  def describe "scraping_test" do
-  it "scraping_test" do
-    expect(actual).to eq(expected)
-  end
 end
 
 
